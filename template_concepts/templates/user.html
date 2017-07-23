@@ -30,6 +30,7 @@
 <div class="container">
     <div class="page-header">
         <h1>Hello, {{ name }}!</h1>
+        <img src="{{ url_for('static', filename='image.jpg') }}"/>
     </div>
 </div>
 {% endblock %}
