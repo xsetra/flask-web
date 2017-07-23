@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask
+from flask.ext.script import Manager
 from flask import request
 from flask import make_response
 from flask import redirect
 from flask import abort
 
 app = Flask(__name__)
+manager = Manager(app)
 
 
 @app.route('/')
@@ -49,4 +51,4 @@ def _404():
     abort(make_response('404 Page. There is nothing.'))
 
 if __name__ == "__main__":
-    app.run(port=8000, debug=1)
+    manager.run()
