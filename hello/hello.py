@@ -13,6 +13,15 @@ def index():
     return "<h2>Hello, FLASK!</h2>", 200
     # 200 is a status_code of response. It's not require
 
+@app.route('/user/<name>')
+def get_user(name):
+    return "Welcome, {}".format(name), 200
+
+def list_users():
+    return "LIST OF USERS", 200
+
+app.add_url_rule(rule='/user', endpoint='list_users', view_func=list_users)
+
 # Run Flask web server. Debug mode on, port 8000.
 if __name__ == '__main__':
     app.run(port=8000, debug=1)
