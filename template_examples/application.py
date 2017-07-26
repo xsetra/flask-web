@@ -18,7 +18,7 @@ def slashboard():
     try:
         return render_template('dashboard.html', TOP_CONTENT=boom )
     except Exception as e:
-        return "{}".format(e)
+        return render_template('500.html', error=str(e))
 
 @app.errorhandler(404)
 def not_found(e):
