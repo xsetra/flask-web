@@ -13,6 +13,13 @@ def dashboard():
     return render_template('dashboard.html', TOP_CONTENT=content())
 
 
+@app.route('/slashboard/')
+def slashboard():
+    try:
+        return render_template('dashboard.html', TOP_CONTENT=boom )
+    except Exception as e:
+        return "{}".format(e)
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html')
