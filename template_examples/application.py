@@ -13,6 +13,11 @@ def dashboard():
     return render_template('dashboard.html', TOP_CONTENT=content())
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
+
+
 def content():
     CONTENT = {"Basics":[["Introduction to Python","/intro/"],
                             ["Print functions and Strings","/print/"],
