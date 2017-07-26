@@ -15,7 +15,10 @@
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <a class="navbar-brand" href="/" style="margin-left:10px;">XSETRA</a>
-            <a href="/dashboard/"><button style="margin-top:7px; margin-left:20px;" type="button" class="btn btn-primary">Dashboard</button></a>
+            <a href="/dashboard/">
+                <button style="margin-top:7px; margin-left:20px;" type="button" class="btn btn-primary">Dashboard
+                </button>
+            </a>
         </div>
         <div class="container-fluid">
             <ul class="nav navbar-nav navbar-right">
@@ -124,6 +127,16 @@
 
 <body>
 <div class="container-fluid" style="margin-left:30px; margin-right:30px; margin-top:-20px; min-height: 100%;">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    alert("{{ message }}");
+                </script>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="page-header">
         <h1>{% block page_header %}{% endblock %}</h1>
     </div>
