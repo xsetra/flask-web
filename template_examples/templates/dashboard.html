@@ -1,0 +1,30 @@
+{% extends 'header.html' %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block page_header %} Dashboard {% endblock %}
+
+{% block body %}
+
+    <div>
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#basics" aria-controls="basics" role="tab" data-toggle="tab">Basics</a>
+            </li>
+            <li role="presentation"><a href="#web-dev" aria-controls="web-dev" role="tab" data-toggle="tab">Web Dev</a>
+            </li>
+            <li role="presentation"><a href="#data-analysis" aria-controls="data-analysis" role="tab"
+                                       data-toggle="tab">Data Anaylysis</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="home">...</div>
+            <div role="tabpanel" class="tab-pane" id="web-dev">...</div>
+            <div role="tabpanel" class="tab-pane" id="data-analysis">...</div>
+        </div>
+
+    </div>
+
+{% endblock %}
