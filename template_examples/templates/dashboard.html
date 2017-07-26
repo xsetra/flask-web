@@ -18,9 +18,22 @@
                                        data-toggle="tab">Data Anaylysis</a></li>
         </ul>
 
+
+    {% macro list_content(content_dict) %}
+        <li><a href="{{ content_dict[1] }}">{{ content_dict[0] }}</a></li>
+    {% endmacro %}
+
+
+
         <!-- Tab panes -->
         <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="home">...</div>
+            <div role="tabpanel" class="tab-pane active" id="basics">
+                <ul>
+                {% for t in TOP_CONTENT['Basics'] %}
+                    {{ list_content(t) }}
+                {% endfor %}
+                </ul>
+            </div>
             <div role="tabpanel" class="tab-pane" id="web-dev">...</div>
             <div role="tabpanel" class="tab-pane" id="data-analysis">...</div>
         </div>
