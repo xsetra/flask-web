@@ -23,6 +23,12 @@ def slashboard():
     except Exception as e:
         return render_template('500.html', error=str(e))
 
+
+@app.route('/login', methods=['GET', 'POST'])
+def login_page():
+    return render_template('login.html')
+
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html')

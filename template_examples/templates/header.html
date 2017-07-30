@@ -38,7 +38,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="container-fluid">
-                                        <form action="" class="form-inline" method="post">
+                                        <form action="/login" class="form-inline" method="post">
                                             <input type="text" class="form-control" placeholder="Username"
                                                    name="username" value="">
                                             <input type="password" class="form-control" placeholder="Password"
@@ -131,7 +131,7 @@
         {% if messages %}
             {% for message in messages %}
                 <script type="text/javascript">
-                    alert("{{ message }}");
+                    alert("{{ message }} ");
                 </script>
             {% endfor %}
         {% endif %}
