@@ -25,6 +25,12 @@ def slashboard():
         return render_template('500.html', error=str(e))
 
 
+@app.route('/register', methods=['GET', 'POST'])
+def register_page():
+    try:
+
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
     error = ''
