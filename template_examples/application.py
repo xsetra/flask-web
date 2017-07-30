@@ -41,10 +41,13 @@ def register_page():
             password = sha256_crypt.encrypt(str(form.password.data))
 
             db = Database()
+
             if db.is_user_exists(username):
                 flash("This username is already taken. Please choose another username.")
-                return render_template('register.html')
+                return render_template('register.html', form=form)
 
+            else:
+                pass
 
     except Exception as e:
         pass
