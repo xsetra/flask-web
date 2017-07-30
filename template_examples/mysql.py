@@ -8,6 +8,7 @@ class Database:
     def __init__(self):
         self.get_instance()
         self.conn = self.__conn_instance
+        self.cursor = self.conn.cursor()
 
     @classmethod
     def get_instance(cls):
@@ -27,3 +28,22 @@ class Database:
                                             user=user,
                                             passwd=pasw,
                                             db=db_name)
+
+    def is_user_exists(self, username):
+        """
+        Check the username on the database. If exists, return True, or not False
+        Args:
+            username: <str>
+
+        Returns: If user exists, return True. <bool>
+        """
+
+        username = MySQLdb.escape_string(username)
+        query = "SELECT * FROM users WHERE username={}".format(username)
+
+        row = int(self.cursor.execute(query))
+        if row != 0:
+            return True
+        else:
+            return False
+
