@@ -47,10 +47,17 @@ def register_page():
                 return render_template('register.html', form=form)
 
             else:
-                pass
+                if db.insert_user(username, password, email):
+                    flash("Thanks for registration.")
+                    session['logged_in'] = True
+                    session['username'] = username
+
+                    return redirect(url_for('dashboard'))
+
+        return render_template('register.html', form=form)
 
     except Exception as e:
-        pass
+        return str(e)
 
 
 @app.route('/login', methods=['GET', 'POST'])

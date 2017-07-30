@@ -29,6 +29,10 @@ class Database:
                                             passwd=pasw,
                                             db=db_name)
 
+    def strings_escape(self, *args):
+        for arg in args:
+            arg = MySQLdb.escape_string(arg)
+
     def is_user_exists(self, username):
         """
         Check the username on the database. If exists, return True, or not False
@@ -38,12 +42,32 @@ class Database:
         Returns: If user exists, return True. <bool>
         """
 
-        username = MySQLdb.escape_string(username)
-        query = "SELECT * FROM users WHERE username={}".format(username)
+        # username = MySQLdb.escape_string(username)
+        query = "SELECT * FROM users WHERE username={}"
 
-        row = int(self.cursor.execute(query))
-        if row != 0:
+        row = self.cursor.execute(query, (username))
+        if int(row) != 0:
             return True
         else:
             return False
 
+    def insert_user(self, username, password, email):
+        """
+        Insert information of user.
+        Args:
+            username: <str>
+            password: <str>
+            email: <str>
+
+        Returns: <bool>
+
+        """
+        try:
+            query = "INSERT INTO users(username, password, email) VALUES({}, {}, {})"
+
+            self.cursor.execute(query, (username, password, email))
+            self.conn.commit()
+            return True
+
+        except Exception as e:
+            return str(e)
