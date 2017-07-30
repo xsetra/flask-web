@@ -1,5 +1,10 @@
-from flask import Flask, render_template, flash, request, redirect, url_for
+from flask import Flask, render_template, flash, request, redirect, url_for, session
+from passlib.hash import sha256_crypt
+import gc
+
 from mysql import Database
+from forms import RegistrationForm
+
 
 app = Flask(__name__)
 
@@ -28,7 +33,21 @@ def slashboard():
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
     try:
+        form = RegistrationForm(request.form)
 
+        if request.method == "POST" and form.validate():
+            username = form.username.data
+            email = form.email.data
+            password = sha256_crypt.encrypt(str(form.password.data))
+
+            db = Database()
+            if db.is_user_exists(username):
+                flash("This username is already taken. Please choose another username.")
+                return render_template('register.html')
+
+
+    except Exception as e:
+        pass
 
 
 @app.route('/login', methods=['GET', 'POST'])
