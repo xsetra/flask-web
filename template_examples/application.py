@@ -16,9 +16,6 @@ def home():
 
 @app.route('/dashboard/')
 def dashboard():
-    flash('TEST 1')
-    flash('TEST MESSAGE 2')
-    flash('TEST MESSAGE EXAMPLES 3')
     return render_template('dashboard.html', TOP_CONTENT=content())
 
 
