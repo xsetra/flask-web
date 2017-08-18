@@ -72,11 +72,11 @@ def login_page():
             else:
                 error = "Invalid credentials. Try Again."
 
-        return render_template("login.html", error=error)
+        return render_template("_3_login.html", error=error)
 
     except Exception as e:
         # flash(e)
-        return render_template("login.html", error=error)
+        return render_template("_3_login.html", error=error)
 
 
 @app.errorhandler(404)

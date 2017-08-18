@@ -1,0 +1,11 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Testing Static Files</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='hello.js') }}"></script>
+</head>
+<body>
+    <input type="button" onclick="hello('{{ name }}')" value="Say Hello"/>
+</body>
+</html>

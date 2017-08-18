@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}"/>
+
+    <title>Basic Login - {% if site_title %} {{ site_title }} {% else %} Homepage {% endif %}</title>
+</head>
+<body>
+    {% include "navs.html" %}
+    <div class="container-fluid" style="margin:40px;">
+        <div class="page-header">
+          <h1>{% block page_header %}{% endblock %}<small>{% block page_header_small %} {% endblock %}</small></h1>
+        </div>
+        <p>
+            {% block content %}
+            {% endblock %}
+        </p>
+    </div>
+</body>
+</html>
