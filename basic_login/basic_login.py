@@ -12,15 +12,15 @@ def index():
 
 @application.route('/register')
 def register():
-    pass
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
 
 
 @application.route('/login')
 def login():
     pass
 
-
-@application.route('/')
 
 if __name__ == "__main__":
     application.run('localhost', 5000, debug=1)
