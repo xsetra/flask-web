@@ -31,9 +31,17 @@ def register():
         return render_template('register.html')
 
 
-@application.route('/login')
+@application.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if db.check_user(username, password):
+            return redirect(url_for('index'))
+        else:
+            return render_template('login.html', error="Username or password is wrong!")
+    else:
+        return render_template('login.html')
 
 
 if __name__ == "__main__":

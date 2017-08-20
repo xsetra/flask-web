@@ -46,5 +46,8 @@ class Database(object):
 
     def add_user(self, username, password):
         sql = "INSERT INTO users(username, password) VALUES('{}', '{}')".format(username, self.hashing(password))
-        print(sql)
+        return self.exec_sql(sql)
+
+    def check_user(self, username, password):
+        sql = "SELECT * FROM users WHERE username='{}' and password='{}'".format(username, self.hashing(password))
         return self.exec_sql(sql)
