@@ -50,4 +50,9 @@ class Database(object):
 
     def check_user(self, username, password):
         sql = "SELECT * FROM users WHERE username='{}' and password='{}'".format(username, self.hashing(password))
-        return self.exec_sql(sql)
+        if self.exec_sql(sql):
+            res = self.cursor.fetchone()
+            if res:
+                return True
+            else:
+                return "Username or password is wrong!"

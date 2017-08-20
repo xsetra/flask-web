@@ -36,10 +36,11 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if db.check_user(username, password):
+        result = db.check_user(username, password)
+        if result is True:
             return redirect(url_for('index'))
         else:
-            return render_template('login.html', error="Username or password is wrong!")
+            return render_template('login.html', error="{}".format(result))
     else:
         return render_template('login.html')
 
