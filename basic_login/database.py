@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import pymysql
+import hashlib
 
 
 class Database(object):
@@ -30,6 +31,10 @@ class Database(object):
         except Exception as e:
             raise e
 
+    @staticmethod
+    def hashing(password):
+        return hashlib.sha512(password.encode()).hexdigest()
+
     def exec_sql(self, sql):
         try:
             self.cursor.execute(sql)
@@ -40,5 +45,6 @@ class Database(object):
             raise e
 
     def add_user(self, username, password):
-        sql = "INSERT INTO users(username, password) VALUES({}, {})".format(username, password)
+        sql = "INSERT INTO users(username, password) VALUES('{}', '{}')".format(username, self.hashing(password))
+        print(sql)
         return self.exec_sql(sql)
