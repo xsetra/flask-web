@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request, jsonify, json
+from flask import Flask, request, jsonify, json, abort
 
 app = Flask(__name__)
 pokedex = [{'number': 14, 'name': 'Kakuna'},
@@ -15,7 +15,18 @@ def pokemon():
 
     else: # POST
         if request.content_type != 'application/json':
-            print('Apo')
+            response = {'400': 'Bad Request, The content-type must be application/json'}
+
+        else:
+            try:
+                new_pokemon = json.load(request.data)
+            except ValueError:
+                return jsonify({'400': 'Bad Request, JSON format is not correct'})
+            pokedex.append({'name': new_pokemon['name'],
+                            'number': new_pokemon['number']})
+            response = pokedex[-1]
+
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run('localhost', 5000, debug=True)
