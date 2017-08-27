@@ -19,7 +19,7 @@ def pokemon():
 
         else:
             try:
-                new_pokemon = json.load(request.data)
+                new_pokemon = json.loads(request.data)
             except ValueError:
                 return jsonify({'400': 'Bad Request, JSON format is not correct'})
             pokedex.append({'name': new_pokemon['name'],
